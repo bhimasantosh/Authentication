@@ -6,6 +6,7 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources/local"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources/commons"/>
         <property name="java-output-path" value="/auth/target/classes"/>
         <property name="context-root" value="mbits"/>
     </wb-module>
