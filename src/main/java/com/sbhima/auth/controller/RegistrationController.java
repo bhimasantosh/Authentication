@@ -41,6 +41,7 @@ public class RegistrationController {
 			ajaxResponse.setError(true);
 			ajaxResponse.setData(bindingResult.getFieldErrors());
 		} else {
+			ajaxResponse.setData("Successfully Register the User");
 			logger.info("New  user signup process has  completed");
 		}
 		return ajaxResponse;

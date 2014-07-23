@@ -22,8 +22,6 @@ public class UserRegistrationFormValidator implements Validator,
 	@Override
 	public void validate(Object target, Errors errors) {
 		UserRegistrationForm userRegistrationForm = (UserRegistrationForm) target;
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "emailOrPhone",
-				wrongEmailOrPhone);
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password",
 				invalidPassword);
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "confirmPassword",
