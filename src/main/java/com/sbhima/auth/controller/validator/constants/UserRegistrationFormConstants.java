@@ -4,7 +4,7 @@ import java.util.regex.Pattern;
 
 public interface UserRegistrationFormConstants {
 	public static final String wrongEmailOrPhone = "wrong.emailorphone";
-	public static final String invalidEmailOrPhone = "invalid.emailorphone";
+	public static final String invalidEmail = "invalid.email";
 	public static final String invalidPassword = "invalid.password";
 	public static final String passwordConfirmPasswordMismatch = "mismatch.password";
 	public static final String invalidPasswordSize = "length.password";

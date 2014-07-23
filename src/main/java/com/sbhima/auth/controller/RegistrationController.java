@@ -46,10 +46,10 @@ public class RegistrationController {
 		return ajaxResponse;
 	}
 
-	@RequestMapping(value = "signupForm", method = RequestMethod.GET)
+	@RequestMapping(value = "signup", method = RequestMethod.GET)
 	public ModelAndView signupForm(HttpServletRequest httpServletRequest,
 			HttpServletResponse httpServletResponse) {
-		ModelAndView modelAndView = new ModelAndView("signup");
+		ModelAndView modelAndView = new ModelAndView("signup_form");
 		modelAndView.addObject("signupform", new UserRegistrationForm());
 		return modelAndView;
 	}

@@ -28,12 +28,9 @@ public class UserRegistrationFormValidator implements Validator,
 				invalidPassword);
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "confirmPassword",
 				invalidPassword);
-		Matcher emailMatcher = email.matcher(userRegistrationForm
-				.getEmailOrPhone());
-		Matcher phoneMatcher = phone.matcher(userRegistrationForm
-				.getEmailOrPhone());
-		if (!(emailMatcher.find() || phoneMatcher.find())) {
-			errors.rejectValue("emailOrPhone", invalidEmailOrPhone, "");
+		Matcher emailMatcher = email.matcher(userRegistrationForm.getEmail());
+		if (!(emailMatcher.find())) {
+			errors.rejectValue("email", invalidEmail, "");
 		}
 		if (userRegistrationForm.getPassword() != null
 				&& userRegistrationForm.getConfirmPassword() != null

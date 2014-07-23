@@ -4,7 +4,7 @@ package com.sbhima.auth.controller.form;
 public class UserRegistrationForm {
 	private String firstName;
 	private String lastName;
-	private String emailOrPhone;
+	private String email;
 	private String password;
 	private String confirmPassword;
 
@@ -24,12 +24,12 @@ public class UserRegistrationForm {
 		this.lastName = lastName;
 	}
 
-	public String getEmailOrPhone() {
-		return emailOrPhone;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setEmailOrPhone(String emailOrPhone) {
-		this.emailOrPhone = emailOrPhone;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getPassword() {
