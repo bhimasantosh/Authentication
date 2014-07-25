@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.sbhima.auth.controller.commons.AjaxResponse;
 import com.sbhima.auth.controller.form.UserLoginForm;
 import com.sbhima.auth.controller.validator.UserLoginFormValidator;
 
@@ -33,23 +32,23 @@ public class LoginController {
 		return modelAndView;
 	}
 
-	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@ResponseBody
 	@RequestMapping(value = "login", method = RequestMethod.POST)
-	public AjaxResponse login(
+	public ModelAndView login(
 			HttpServletRequest httpServletRequest,
 			HttpServletResponse httpServletResponse,
 			@ModelAttribute("loginForm") @Validated(value = UserLoginForm.class) UserLoginForm userLoginForm,
 			BindingResult bindingResult) {
 		logger.info("user login has started");
-		AjaxResponse ajaxResponse = new AjaxResponse();
+		ModelAndView modelAndView = new ModelAndView();
 		userLoginFormValidator.validate(userLoginForm, bindingResult);
 		if (bindingResult.hasErrors()) {
-			ajaxResponse.setData(bindingResult.getFieldErrors());
-			ajaxResponse.setError(true);
+			modelAndView.addObject("fieldErrors",
+					bindingResult.getFieldErrors());
+			modelAndView.setViewName("login");
 		} else {
-			ajaxResponse.setData("Successfully Logged In");
+			modelAndView.setViewName("home");
 		}
-		return ajaxResponse;
+		return modelAndView;
 	}
 }

@@ -1,5 +1,7 @@
 package com.sbhima.auth.controller;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -11,11 +13,10 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.sbhima.auth.controller.commons.AjaxResponse;
 import com.sbhima.auth.controller.form.UserRegistrationForm;
+import com.sbhima.auth.controller.handlers.SocialHttpHandler;
 import com.sbhima.auth.controller.validator.UserRegistrationFormValidator;
 
 @Controller
@@ -24,28 +25,8 @@ public class RegistrationController {
 			.getLogger(RegistrationController.class);
 	@Autowired
 	private UserRegistrationFormValidator userRegistrationFormValidator;
-
-	@SuppressWarnings({ "rawtypes", "unchecked" })
-	@ResponseBody
-	@RequestMapping(value = "signup", method = RequestMethod.POST)
-	public AjaxResponse register(
-			HttpServletRequest httpServletRequest,
-			HttpServletResponse httpServletResponse,
-			@ModelAttribute("signupform") @Validated(value = UserRegistrationFormValidator.class) UserRegistrationForm userRegistrationForm,
-			BindingResult bindingResult) {
-		logger.info("New user signup process has started");
-		AjaxResponse ajaxResponse = new AjaxResponse();
-		userRegistrationFormValidator.validate(userRegistrationForm,
-				bindingResult);
-		if (bindingResult.hasErrors()) {
-			ajaxResponse.setError(true);
-			ajaxResponse.setData(bindingResult.getFieldErrors());
-		} else {
-			ajaxResponse.setData("Successfully Register the User");
-			logger.info("New  user signup process has  completed");
-		}
-		return ajaxResponse;
-	}
+	@Autowired
+	private SocialHttpHandler socialHttpHandler;
 
 	@RequestMapping(value = "signup", method = RequestMethod.GET)
 	public ModelAndView signupForm(HttpServletRequest httpServletRequest,
@@ -53,5 +34,40 @@ public class RegistrationController {
 		ModelAndView modelAndView = new ModelAndView("signup_form");
 		modelAndView.addObject("signupform", new UserRegistrationForm());
 		return modelAndView;
+	}
+
+	@RequestMapping(value = "signup", method = RequestMethod.POST)
+	public ModelAndView register(
+			HttpServletRequest httpServletRequest,
+			HttpServletResponse httpServletResponse,
+			@ModelAttribute("signupform") @Validated(value = UserRegistrationFormValidator.class) UserRegistrationForm userRegistrationForm,
+			BindingResult bindingResult) {
+		logger.info("New user signup process has started");
+		ModelAndView modelAndView = new ModelAndView();
+		userRegistrationFormValidator.validate(userRegistrationForm,
+				bindingResult);
+		if (bindingResult.hasErrors()) {
+			modelAndView.addObject("fieldErrors",
+					bindingResult.getFieldErrors());
+			modelAndView.setViewName("signup");
+		} else {
+			modelAndView.setViewName("login");
+			logger.info("New  user signup process has  completed");
+		}
+		return modelAndView;
+	}
+
+	@RequestMapping(value = "socialsignup", method = RequestMethod.GET)
+	public void socialregister(HttpServletRequest httpServletRequest,
+			HttpServletResponse httpServletResponse) throws IOException {
+		socialHttpHandler.authorizeSocialApplication(httpServletRequest,
+				httpServletResponse);
+	}
+
+	@RequestMapping(value = "socialsignupwithcode", method = RequestMethod.GET)
+	public void socialsignupwithcode(HttpServletRequest httpServletRequest,
+			HttpServletResponse httpServletResponse) throws IOException {
+		socialHttpHandler.getAccessToken(httpServletRequest,
+				httpServletResponse);
 	}
 }

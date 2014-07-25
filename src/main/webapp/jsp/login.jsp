@@ -7,14 +7,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Registration Form</title>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+<link rel="stylesheet" href="../css/bootstrap-theme.min.css">
+<script src="../js/jquery.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/login.js"></script>
 <style type="text/css">
 .bs-example {
 	margin: 20px;
@@ -43,6 +40,36 @@
 					<form:input path="password" class="form-control" name="password"
 						placeholder="Password" />
 				</div>
+				<div class="col-xs-1">
+					<span class="orText">(Or)</span>
+				</div>
+				<div class="col-xs-2">
+					<button type="button" class="btn btn-primary btn-lg">
+						<a href="www.facebook.com"
+							style="text-decoration: none; color: #ffffff">Signin With
+							Facebook</a>
+					</button>
+				</div>
+				<div class="col-xs-1">
+					<span class="orText">(Or)</span>
+				</div>
+				<div class="col-xs-2">
+					<button type="button" class="btn btn-primary btn-lg">
+						<a href="www.twitter.com"
+							style="text-decoration: none; color: #ffffff">Signin With
+							Twitter</a>
+					</button>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="remember-me col-xs-offset-2 col-xs-2">
+					<input type="checkbox" id="remember-me" name="remember-me">
+					<label for="remember-me">Remember Me</label>
+				</div>
+				<div class="col-xs-offset-0 col-xs-2 forgot-password">
+					<a href="/sbhima/web/forgotPassword">Forgot password?</a>
+				</div>
+				
 			</div>
 			<div class="form-group">
 				<div class="col-xs-offset-2 col-xs-3">
