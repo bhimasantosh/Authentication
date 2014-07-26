@@ -1,18 +1,18 @@
 package com.sbhima.auth.service.constants;
 
 public enum SocialType {
-	FACEBOOK("facebook"), TWITTER("twitter");
-	private String value;
+	FACEBOOK(1), TWITTER(2), SELF(100);
+	private int value;
 
-	SocialType(String value) {
+	SocialType(int value) {
 		this.setValue(value);
 	}
 
-	public String getValue() {
+	public int getValue() {
 		return value;
 	}
 
-	public void setValue(String value) {
+	public void setValue(int value) {
 		this.value = value;
 	}
 }

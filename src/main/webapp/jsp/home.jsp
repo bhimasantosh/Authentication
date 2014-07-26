@@ -22,7 +22,8 @@
 </head>
 <body>
 	<div class="image">
-		<img alt="" src="../images/head.png" width="100%"></img>
+		<img alt="" src="../images/head.png" width="100%" height="10%"
+			style="padding-bottom: 3%"></img>
 	</div>
 	<div class="col-xs-offset-1 col-xs-12">
 		<ul class="nav nav-tabs">

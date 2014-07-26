@@ -3,13 +3,13 @@
 <html lang="en">
 <head>
 <link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	href="./css/bootstrap.min.css">
 <link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+	href="./css/bootstrap-theme.min.css">
 <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	src="./js/jquery.min.js"></script>
 <script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	src="./js/bootstrap.min.js"></script>
 <style type="text/css">
 p {
 	padding: 30px;
@@ -18,19 +18,22 @@ p {
 	text-align: center;
 }
 </style>
-<%@include file="jsp/page_header.html"%>
 </head>
 <body align="center">
+	<div class="image">
+		<img alt="" src="./images/head.png" width="100%" height="10%"
+			style="padding-bottom: 3%"></img>
+	</div>
 	<div class="container">
 		<div class="row">
 			<div class="btn btn-primary btn-lg">
 				<p>
-					<a href="./web/signup" style="color:#ffffff">Register</a>
+					<a href="./web/signup" style="color: #ffffff">Register</a>
 				</p>
 			</div>
 			<div class="btn btn-primary btn-lg">
 				<p>
-					<a href="./web/login" style="color:#ffffff">Login</a>
+					<a href="./web/login" style="color: #ffffff">Login</a>
 				</p>
 			</div>
 		</div>

@@ -24,7 +24,8 @@
 </head>
 <body>
 	<div class="image">
-		<img alt="" src="../images/head.png" width="100%"></img>
+		<img alt="" src="../images/head.png" width="100%" height="10%"
+			style="padding-bottom: 3%"></img>
 	</div>
 	<div class="col-xs-10">
 		<form:form id="signupForm" class="form-horizontal" method="post"
@@ -36,6 +37,13 @@
 					<form:input path="firstName" class="form-control" name="firstName"
 						placeholder="First Name" />
 				</div>
+				<div class=" col-xs-offset-2 col-xs-3">
+					<button type="button" class="btn btn-primary btn-lg">
+						<a href="web/socialsignup?socialType=facebook"
+							style="text-decoration: none; color: #ffffff">Signin With
+							Twitter</a>
+					</button>
+				</div>
 			</div>
 			<div class="form-group">
 				<label for="lastName" class="control-label col-xs-2">Last
@@ -44,6 +52,7 @@
 					<form:input path="lastName" class="form-control" name="lastName"
 						placeholder="Last Name" />
 				</div>
+
 			</div>
 			<div class="form-group">
 				<label for="email" class="control-label col-xs-2">Email</label>
@@ -51,22 +60,9 @@
 					<form:input path="email" class="form-control" name="email"
 						placeholder="Email" />
 				</div>
-				<div class="col-xs-1">
-					<span class="orText">(Or)</span>
-				</div>
-				<div class="col-xs-3">
+				<div class="col-xs-offset-2 col-xs-3">
 					<button type="button" class="btn btn-primary btn-lg">
 						<a href="web/socialsignup?socialType=facebook"
-							style="text-decoration: none; color: #ffffff">Signin With
-							Facebook</a>
-					</button>
-				</div>
-				<div class="col-xs-1">
-					<span class="orText">(Or)</span>
-				</div>
-				<div class="col-xs-2">
-					<button type="button" class="btn btn-primary btn-lg">
-						<a href="socialsignup?socialType=twitter"
 							style="text-decoration: none; color: #ffffff">Signin With
 							Twitter</a>
 					</button>
@@ -78,6 +74,7 @@
 					<form:password name="password" class="form-control" path="password"
 						placeholder="Password" />
 				</div>
+
 			</div>
 			<div class="form-group">
 				<label for="confirmPassword" class="control-label col-xs-2">Confirm
@@ -85,6 +82,13 @@
 				<div class="col-xs-3">
 					<form:password path="confirmPassword" class="form-control"
 						name="confirmPassword" placeholder="Confirm Password" />
+				</div>
+				<div class="col-xs-offset-2 col-xs-2">
+					<button type="button" class="btn btn-primary btn-lg">
+						<a href="socialsignup?socialType=twitter"
+							style="text-decoration: none; color: #ffffff">Signin With
+							LinkedIn</a>
+					</button>
 				</div>
 			</div>
 			<div class="form-group">

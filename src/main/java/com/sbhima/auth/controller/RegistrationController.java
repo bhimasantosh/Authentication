@@ -43,17 +43,28 @@ public class RegistrationController {
 			@ModelAttribute("signupform") @Validated(value = UserRegistrationFormValidator.class) UserRegistrationForm userRegistrationForm,
 			BindingResult bindingResult) {
 		logger.info("New user signup process has started");
-		ModelAndView modelAndView = new ModelAndView();
+		ModelAndView modelAndView = null;
 		userRegistrationFormValidator.validate(userRegistrationForm,
 				bindingResult);
 		if (bindingResult.hasErrors()) {
+			modelAndView = new ModelAndView();
 			modelAndView.addObject("fieldErrors",
 					bindingResult.getFieldErrors());
 			modelAndView.setViewName("signup");
 		} else {
-			modelAndView.setViewName("login");
+			modelAndView = new ModelAndView("redirect:/web/login");
 			logger.info("New  user signup process has  completed");
 		}
+		return modelAndView;
+	}
+
+	@RequestMapping(value = "signupSuccess", method = RequestMethod.GET)
+	public ModelAndView signupSuccess(HttpServletRequest httpServletRequest,
+			HttpServletResponse httpServletResponse) {
+		logger.info("Signup Successfull");
+		ModelAndView modelAndView = new ModelAndView("signup_success");
+		modelAndView.addObject("email",
+				httpServletRequest.getParameter("email"));
 		return modelAndView;
 	}
 

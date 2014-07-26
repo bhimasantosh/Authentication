@@ -21,17 +21,27 @@
 	padding-top: 7px;
 }
 </style>
-<%@include file="page_header.html"%>
 </head>
 <body>
+	<div class="image">
+		<img alt="" src="../images/head.png" width="100%" height="10%"
+			style="padding-bottom: 3%"></img>
+	</div>
 	<div class="bs-example">
-		<form:form class="form-horizontal" method="post"
+		<form:form id="loginForm" class="form-horizontal" method="post"
 			modelAttribute="loginForm" action="/sbhima/web/login">
 			<div class="form-group">
-				<label for="mmail" class="control-label col-xs-2">Email</label>
+				<label for="email" class="control-label col-xs-2">Email</label>
 				<div class="col-xs-3">
 					<form:input path="email" class="form-control" name="email"
 						placeholder="Email" />
+				</div>
+				<div class="col-xs-offset-2 col-xs-2">
+					<button type="button" class="btn btn-primary btn-lg">
+						<a href="www.facebook.com"
+							style="text-decoration: none; color: #ffffff">Signin With
+							Facebook</a>
+					</button>
 				</div>
 			</div>
 			<div class="form-group">
@@ -40,20 +50,7 @@
 					<form:input path="password" class="form-control" name="password"
 						placeholder="Password" />
 				</div>
-				<div class="col-xs-1">
-					<span class="orText">(Or)</span>
-				</div>
-				<div class="col-xs-2">
-					<button type="button" class="btn btn-primary btn-lg">
-						<a href="www.facebook.com"
-							style="text-decoration: none; color: #ffffff">Signin With
-							Facebook</a>
-					</button>
-				</div>
-				<div class="col-xs-1">
-					<span class="orText">(Or)</span>
-				</div>
-				<div class="col-xs-2">
+				<div class="col-xs-offset-2 col-xs-2">
 					<button type="button" class="btn btn-primary btn-lg">
 						<a href="www.twitter.com"
 							style="text-decoration: none; color: #ffffff">Signin With
@@ -69,7 +66,13 @@
 				<div class="col-xs-offset-0 col-xs-2 forgot-password">
 					<a href="/sbhima/web/forgotPassword">Forgot password?</a>
 				</div>
-				
+				<div class="col-xs-offset-1 col-xs-2">
+					<button type="button" class="btn btn-primary btn-lg">
+						<a href="www.twitter.com"
+							style="text-decoration: none; color: #ffffff">Signin With
+							LinkedIn</a>
+					</button>
+				</div>
 			</div>
 			<div class="form-group">
 				<div class="col-xs-offset-2 col-xs-3">

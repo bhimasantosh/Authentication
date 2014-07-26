@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.sbhima.auth.service.ISocialService;
 import com.sbhima.auth.service.constants.OAuthAppConstants;
-import com.sbhima.auth.service.constants.SocialType;
+import com.sbhima.auth.service.constants.SocialConstants;
 import com.sbhima.auth.service.properties.FacebookApplicationProperties;
 import com.sbhima.auth.service.properties.SocialEndpointProperties;
 
@@ -19,14 +19,14 @@ public class FacebookSocialService implements ISocialService {
 	@Override
 	public String getAuthorizationRedirectURL() {
 		StringBuilder url = new StringBuilder();
-		url.append(socialEndpointProperties.getProperty(SocialType.FACEBOOK
+		url.append(socialEndpointProperties.getProperty(SocialConstants.FACEBOOK
 				.getValue() + ".endpoint"));
 		url.append("?");
 		String clientId = facebookApplicationProperties
-				.getProperty(SocialType.FACEBOOK.getValue() + "."
+				.getProperty(SocialConstants.FACEBOOK.getValue() + "."
 						+ OAuthAppConstants.CLIENT_ID.getValue());
 		String redirectUri = facebookApplicationProperties
-				.getProperty(SocialType.FACEBOOK.getValue() + "."
+				.getProperty(SocialConstants.FACEBOOK.getValue() + "."
 						+ OAuthAppConstants.REDIRECT_URI.getValue());
 		url.append(OAuthAppConstants.CLIENT_ID.getValue()).append("=")
 				.append(clientId);
@@ -34,7 +34,7 @@ public class FacebookSocialService implements ISocialService {
 		url.append(OAuthAppConstants.REDIRECT_URI.getValue()).append("=")
 				.append(redirectUri);
 		url.append("&");
-		url.append("state=").append(SocialType.FACEBOOK.getValue());
+		url.append("state=").append(SocialConstants.FACEBOOK.getValue());
 		return url.toString();
 	}
 
