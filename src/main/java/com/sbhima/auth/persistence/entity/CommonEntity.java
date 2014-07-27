@@ -6,7 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
-public class DateEntity {
+public class CommonEntity {
 	@Column(name = "creation_date", insertable = false, updatable = false)
 	private Timestamp creation_date;
 

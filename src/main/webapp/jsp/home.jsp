@@ -28,14 +28,19 @@
 	<div class="col-xs-offset-1 col-xs-12">
 		<ul class="nav nav-tabs">
 			<li class=active><a href="#">Home</a></li>
+			<li><a href="#">Connect!</a></li>
 			<li><a href="#">Friends</a></li>
-			<li class=""drop-down"><a href="#" data-toggle="drop-down"
+			<li class="drop-down"><a href="#" data-toggle="drop-down"
 				class="dropdown-toggle">Settings<b class="caret"></b></a>
 				<ul class="dropdown-menu">
 					<li><a href="#">Profile</a></li>
 					<li class="divider"></li>
 					<li><a href="#">Logout</a></li>
 				</ul></li>
+			<div class="cols-xs-offset-10 col-xs-6">
+				<p style="margin-top: 1%; margin-left: 60%">Welcome
+					${user.lastName} ${user.firstName}</p>
+			</div>
 		</ul>
 	</div>
 </body>

@@ -39,7 +39,7 @@
 			</props>
 		</property>
 		<property name="packagesToScan">
-			<value></value>
+			<value>com.sbhima.auth.persistence.entity</value>
 		</property>
 	</bean>
 	<bean id="transactionManager"

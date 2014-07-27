@@ -1,6 +1,7 @@
 package com.sbhima.auth.controller;
 
 import java.io.IOException;
+import java.io.Serializable;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,6 +19,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.sbhima.auth.controller.form.UserRegistrationForm;
 import com.sbhima.auth.controller.handlers.SocialHttpHandler;
 import com.sbhima.auth.controller.validator.UserRegistrationFormValidator;
+import com.sbhima.auth.persistence.entity.CommonEntity;
+import com.sbhima.auth.persistence.entity.User;
+import com.sbhima.auth.service.UserSignupService;
 
 @Controller
 public class RegistrationController {
@@ -27,12 +31,19 @@ public class RegistrationController {
 	private UserRegistrationFormValidator userRegistrationFormValidator;
 	@Autowired
 	private SocialHttpHandler socialHttpHandler;
+	@Autowired
+	private UserSignupService userSignupService;
 
 	@RequestMapping(value = "signup", method = RequestMethod.GET)
 	public ModelAndView signupForm(HttpServletRequest httpServletRequest,
 			HttpServletResponse httpServletResponse) {
-		ModelAndView modelAndView = new ModelAndView("signup_form");
-		modelAndView.addObject("signupform", new UserRegistrationForm());
+		ModelAndView modelAndView = null;
+		if (httpServletRequest.getSession().getAttribute("USER") == null) {
+			modelAndView = new ModelAndView("signup_form");
+			modelAndView.addObject("signupform", new UserRegistrationForm());
+		} else {
+			modelAndView = new ModelAndView("redirect:/web/home");
+		}
 		return modelAndView;
 	}
 
@@ -76,9 +87,20 @@ public class RegistrationController {
 	}
 
 	@RequestMapping(value = "socialsignupwithcode", method = RequestMethod.GET)
-	public void socialsignupwithcode(HttpServletRequest httpServletRequest,
-			HttpServletResponse httpServletResponse) throws IOException {
-		socialHttpHandler.getAccessToken(httpServletRequest,
-				httpServletResponse);
+	public ModelAndView socialsignupwithcode(
+			HttpServletRequest httpServletRequest,
+			HttpServletResponse httpServletResponse) throws Exception {
+		String socialType = httpServletRequest.getParameter("state");
+		String accessToken = socialHttpHandler.getAccessToken(
+				httpServletRequest, httpServletResponse);
+		Serializable socialUser = socialHttpHandler.getUserDetails(socialType,
+				accessToken);
+		CommonEntity entity = socialHttpHandler.getUserFromSocialUser(
+				socialUser, accessToken, socialType);
+		userSignupService.populateIfUserExists(entity, socialType);
+		User user = userSignupService.saveAndLoadUser(entity);
+		httpServletRequest.getSession().setAttribute("USER", user);
+		ModelAndView modelAndView = new ModelAndView("redirect:/web/home");
+		return modelAndView;
 	}
 }

@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="../css/bootstrap-theme.min.css">
 <script src="../js/jquery.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
+<script src="../js/parsley.js"></script>
 <script src="../js/login.js"></script>
 <style type="text/css">
 .bs-example {

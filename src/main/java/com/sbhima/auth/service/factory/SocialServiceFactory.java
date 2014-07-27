@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.sbhima.auth.service.ISocialService;
 import com.sbhima.auth.service.constants.SocialConstants;
+import com.sbhima.auth.service.constants.SocialType;
 import com.sbhima.auth.service.impl.FacebookSocialService;
 
 @Service
@@ -14,6 +15,13 @@ public class SocialServiceFactory {
 
 	public ISocialService getSocialService(String socialType) {
 		if (socialType.equalsIgnoreCase(SocialConstants.FACEBOOK.getValue())) {
+			return facebookSocialService;
+		}
+		return null;
+	}
+
+	public ISocialService getSocialService(int socialType) {
+		if (socialType == SocialType.FACEBOOK.getValue()) {
 			return facebookSocialService;
 		}
 		return null;

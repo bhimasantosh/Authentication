@@ -39,9 +39,9 @@
 				</div>
 				<div class=" col-xs-offset-2 col-xs-3">
 					<button type="button" class="btn btn-primary btn-lg">
-						<a href="web/socialsignup?socialType=facebook"
+						<a href="socialsignup?socialType=facebook"
 							style="text-decoration: none; color: #ffffff">Signin With
-							Twitter</a>
+							Facebook</a>
 					</button>
 				</div>
 			</div>
@@ -62,7 +62,7 @@
 				</div>
 				<div class="col-xs-offset-2 col-xs-3">
 					<button type="button" class="btn btn-primary btn-lg">
-						<a href="web/socialsignup?socialType=facebook"
+						<a href="socialsignup?socialType=twitter"
 							style="text-decoration: none; color: #ffffff">Signin With
 							Twitter</a>
 					</button>
@@ -85,7 +85,7 @@
 				</div>
 				<div class="col-xs-offset-2 col-xs-2">
 					<button type="button" class="btn btn-primary btn-lg">
-						<a href="socialsignup?socialType=twitter"
+						<a href="socialsignup?socialType=linkedin"
 							style="text-decoration: none; color: #ffffff">Signin With
 							LinkedIn</a>
 					</button>

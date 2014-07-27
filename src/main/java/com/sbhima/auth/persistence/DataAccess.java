@@ -2,7 +2,9 @@ package com.sbhima.auth.persistence;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
@@ -75,5 +77,32 @@ public class DataAccess {
 			throw e;
 		}
 		return obj;
+	}
+
+	@SuppressWarnings("rawtypes")
+	public List queryWithParams(StringBuffer query,
+			Map<String, Object> parameters) throws Exception {
+		Session session = sessionFactory.getCurrentSession();
+		List list = null;
+		try {
+			Query queryObj = session.createQuery(query.toString());
+
+			if (parameters != null) {
+				for (String param : parameters.keySet()) {
+					if (parameters.get(param) instanceof Collection) {
+						queryObj.setParameterList(param,
+								(Collection) parameters.get(param));
+					} else {
+						queryObj.setParameter(param, parameters.get(param));
+					}
+				}
+			}
+
+			list = queryObj.list();
+		} catch (Exception e) {
+			logger.error("Error while loading object:", e);
+			throw e;
+		}
+		return list;
 	}
 }

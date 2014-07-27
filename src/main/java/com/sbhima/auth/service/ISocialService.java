@@ -1,5 +1,12 @@
 package com.sbhima.auth.service;
 
+import java.io.IOException;
+import java.io.Serializable;
+
+import org.apache.commons.httpclient.HttpException;
+
+import com.sbhima.auth.persistence.entity.CommonEntity;
+
 public interface ISocialService {
 	/**
 	 * Return the complete url populated with client id, redirect uri and state.
@@ -16,6 +23,29 @@ public interface ISocialService {
 	 * id,client secret to obtain access token.
 	 * 
 	 * @return
+	 * @throws IOException
+	 * @throws HttpException
 	 */
-	String getAccessTokenResponse(String code);
+	String getAccessTokenResponse(String code) throws HttpException,
+			IOException;
+
+	/**
+	 * Return user information populated with complete user information given
+	 * user access token
+	 * 
+	 * @param accessToken
+	 * @return
+	 * @throws Exception
+	 */
+	Serializable getUserDetails(String accessToken) throws Exception;
+
+	/**
+	 * Convert the socialuser into persistent user entity
+	 * 
+	 * @param socialUser
+	 * @param accessToken
+	 * @return
+	 */
+	CommonEntity getUserFromSocialUser(Serializable socialUser,
+			String accessToken);
 }

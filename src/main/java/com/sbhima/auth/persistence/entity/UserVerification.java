@@ -1,5 +1,8 @@
 package com.sbhima.auth.persistence.entity;
 
+import java.io.Serializable;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -9,8 +12,12 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "user_verification")
-public class UserVerification extends DateEntity {
-	@OneToOne(targetEntity = User.class)
+public class UserVerification extends CommonEntity implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3549514255193810103L;
+	@OneToOne(targetEntity = User.class, cascade = { CascadeType.ALL })
 	@JoinColumn(name = "id")
 	@Id
 	private User user;

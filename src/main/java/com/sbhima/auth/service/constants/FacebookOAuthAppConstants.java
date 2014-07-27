@@ -1,11 +1,11 @@
 package com.sbhima.auth.service.constants;
 
-public enum OAuthAppConstants {
+public enum FacebookOAuthAppConstants {
 	CLIENT_ID("client_id"), CLIENT_SECRET("client_secret"), REDIRECT_URI(
-			"redirect_uri");
+			"redirect_uri"), SCOPE("scope"), CODE("code");
 	private String value;
 
-	private OAuthAppConstants(String value) {
+	private FacebookOAuthAppConstants(String value) {
 		this.setValue(value);
 	}
 

@@ -21,4 +21,9 @@ public class UserService {
 	public User loadById(int id) throws Exception {
 		return userDAO.loadById(id);
 	}
+
+	@Transactional(readOnly = false)
+	public User loadUserByEmail(String email, int socialType) throws Exception {
+		return userDAO.loadUserByEmail(email, socialType);
+	}
 }
