@@ -1,5 +1,5 @@
-
 package com.sbhima.auth.social.facebook.dto;
+
 import java.io.Serializable;
 
 public class FacebookUser implements Serializable {
@@ -16,6 +16,7 @@ public class FacebookUser implements Serializable {
 	private String birthday;
 	private String political;
 	private String bio;
+	private FacebookPicture picture;
 	//
 	private int score = 0;
 
@@ -114,5 +115,13 @@ public class FacebookUser implements Serializable {
 
 	public void setBio(String bio) {
 		this.bio = bio;
+	}
+
+	public FacebookPicture getPicture() {
+		return picture;
+	}
+
+	public void setPicture(FacebookPicture picture) {
+		this.picture = picture;
 	}
 }

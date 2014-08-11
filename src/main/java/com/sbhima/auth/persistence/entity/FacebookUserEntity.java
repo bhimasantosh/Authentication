@@ -1,28 +1,24 @@
 package com.sbhima.auth.persistence.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import java.io.Serializable;
 
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "facebook_users")
-public class FacebookUserEntity extends CommonEntity {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "social_id")
-	private int social_id;
-	@ManyToOne
+public class FacebookUserEntity extends CommonEntity implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8790556290786341154L;
+	@OneToOne
 	@JoinColumn(name = "id")
-	@Cascade(value = { CascadeType.SAVE_UPDATE })
+	@EmbeddedId
 	private User user;
 	@Column(name = "access_token")
 	private String accessToken;

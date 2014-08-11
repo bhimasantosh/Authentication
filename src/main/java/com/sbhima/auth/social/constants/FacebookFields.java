@@ -93,6 +93,7 @@ public enum FacebookFields {
 				+ FacebookFields.FIRST_NAME.getValue() + ","
 				+ FacebookFields.LAST_NAME.getValue() + ","
 				+ FacebookFields.BIRTHDAY.getValue() + ","
+				+ FacebookFields.PICTURE.getValue() + ","
 				+ FacebookFields.EMAIL.getValue();
 	}
 

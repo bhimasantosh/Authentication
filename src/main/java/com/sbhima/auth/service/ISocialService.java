@@ -2,10 +2,12 @@ package com.sbhima.auth.service;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.List;
 
 import org.apache.commons.httpclient.HttpException;
 
 import com.sbhima.auth.persistence.entity.CommonEntity;
+import com.sbhima.auth.social.dto.SocialProfile;
 
 public interface ISocialService {
 	/**
@@ -48,4 +50,15 @@ public interface ISocialService {
 	 */
 	CommonEntity getUserFromSocialUser(Serializable socialUser,
 			String accessToken);
+
+	/**
+	 * Return the user's social connection information given his access token
+	 * 
+	 * @param accessToken
+	 * @return
+	 * @throws IOException
+	 * @throws HttpException
+	 */
+	List<SocialProfile> getUserSocialConnections(String accessToken)
+			throws Exception;
 }

@@ -1,6 +1,5 @@
 package com.sbhima.auth.social.facebook.dto;
 
-import org.apache.log4j.Category;
 
 public class FacebookResults {
 	private String id;

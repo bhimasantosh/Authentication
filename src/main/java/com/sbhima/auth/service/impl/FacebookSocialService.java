@@ -2,6 +2,8 @@ package com.sbhima.auth.service.impl;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpException;
@@ -23,7 +25,9 @@ import com.sbhima.auth.service.constants.SocialType;
 import com.sbhima.auth.service.properties.FacebookApplicationProperties;
 import com.sbhima.auth.service.properties.SocialEndpointProperties;
 import com.sbhima.auth.social.constants.FacebookFields;
+import com.sbhima.auth.social.dto.SocialProfile;
 import com.sbhima.auth.social.facebook.dto.FacebookUser;
+import com.sbhima.auth.social.facebook.dto.FacebookUserJsonData;
 
 @Service
 public class FacebookSocialService implements ISocialService {
@@ -51,8 +55,8 @@ public class FacebookSocialService implements ISocialService {
 				.append(clientId);
 		url.append("&");
 
-		url.append(FacebookOAuthAppConstants.REDIRECT_URI.getValue()).append("=")
-				.append(redirectUri);
+		url.append(FacebookOAuthAppConstants.REDIRECT_URI.getValue())
+				.append("=").append(redirectUri);
 		url.append("&");
 
 		url.append(FacebookOAuthAppConstants.SCOPE.getValue()).append("=")
@@ -84,7 +88,8 @@ public class FacebookSocialService implements ISocialService {
 		NameValuePair clientidNameValuePair = new NameValuePair(
 				FacebookOAuthAppConstants.CLIENT_ID.getValue(), clientId);
 		NameValuePair clientsecretNameValuePair = new NameValuePair(
-				FacebookOAuthAppConstants.CLIENT_SECRET.getValue(), clientSecret);
+				FacebookOAuthAppConstants.CLIENT_SECRET.getValue(),
+				clientSecret);
 		NameValuePair redirectUriNameValuePair = new NameValuePair(
 				FacebookOAuthAppConstants.REDIRECT_URI.getValue(), redirectUri);
 		NameValuePair codeNameValuePair = new NameValuePair(
@@ -136,4 +141,35 @@ public class FacebookSocialService implements ISocialService {
 		facebookUserEntity.setUser(user);
 		return facebookUserEntity;
 	}
+
+	@Override
+	public List<SocialProfile> getUserSocialConnections(String accessToken)
+			throws Exception {
+		HttpClient httpClient = new HttpClient();
+		String endpoint = socialEndpointProperties
+				.getProperty(SocialConstants.FACEBOOK.getValue()
+						+ ".graph_endpoint");
+		GetMethod getMethod = new GetMethod(endpoint + "/me/friends");
+		NameValuePair fields = new NameValuePair("fields",
+				FacebookFields.getFieldsForConnections());
+		NameValuePair token = new NameValuePair("access_token", accessToken);
+		NameValuePair[] nameValuePairs = new NameValuePair[] { fields, token };
+		getMethod.setQueryString(nameValuePairs);
+		httpClient.executeMethod(getMethod);
+		String response = getMethod.getResponseBodyAsString();
+		ObjectMapper objectMapper = new ObjectMapper();
+		FacebookUserJsonData facebookUserJsonData = objectMapper.readValue(
+				response, FacebookUserJsonData.class);
+		List<SocialProfile> socialProfiles = new ArrayList<SocialProfile>();
+		for (FacebookUser facebookUser : facebookUserJsonData.getData()) {
+			SocialProfile socialProfile = new SocialProfile();
+			socialProfile.setFirstName(facebookUser.getFirst_name());
+			socialProfile.setLastName(facebookUser.getLast_name());
+			socialProfile.setImageUrl(facebookUser.getPicture().getData()
+					.getUrl());
+			socialProfiles.add(socialProfile);
+		}
+		return socialProfiles;
+	}
+
 }
