@@ -28,7 +28,7 @@
 	<div class="col-xs-offset-1 col-xs-12">
 		<ul class="nav nav-tabs">
 			<li class=active><a href="#">Home</a></li>
-			<li><a href="#">Connect!</a></li>
+			<li><a href="connect">Connect!</a></li>
 			<li><a href="#">Friends</a></li>
 			<li class="drop-down"><a href="#" data-toggle="drop-down"
 				class="dropdown-toggle">Settings<b class="caret"></b></a>
